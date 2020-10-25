@@ -1,0 +1,49 @@
+//Create a new app
+rails new 'app_name'
+
+//create a link which is sytem defined scaffolf
+rails g scaffold link title:string url:string
+
+//migrate db to server
+rake db:migrate
+
+//to start server
+rails s
+
+//if some gems you want to install then write in gemfile
+gem 'devise', '~>4.7.3'
+
+//bundle every time after gem added
+bundle install 
+//if u need to update the gem then 
+bundle update
+
+//to add user
+rails g devise:install
+
+//goto config/enviroments/development.rb and add line for default hosting port
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+//goto to routes and set default link 
+root to: "link#index"
+
+//goto views/layout/application.html.erb add this 
+<% flash.each do |name ,msg| %>
+    <%= content_tag(:div,msg, class:"alert alert-#{name}")%>
+<% end %>
+
+//adding devise views default
+rails g devise:views
+
+//Adding devise user 
+rails g devise User
+
+//again migrate database
+rake db:migrate
+
+//just restart the rails server and then check sign_up or sign_in
+localhost:3000/users/sign_up
+
+//now add some lines in application.html in layouts
+if statement (if statement with else)
+
